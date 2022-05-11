@@ -1,18 +1,13 @@
 @echo off
 
-if NOT "%1" == "x64" if NOT "%1" == "x86" (
-    echo Must specify first argument as x86 or x64
+if NOT "%1" == "x64" (
+    echo Must specify first argument as x64
     goto :error
 )
 if "%1" == "x64" (
     set arch=64
     set cmake_gen="Visual Studio 15 2017 Win64"
 )
-if "%1" == "x86" (
-    set arch=32
-    set cmake_gen="Visual Studio 15 2017"
-)
-
 if "%2" == "" (
     echo Must specify second argument as build config
     goto :error
