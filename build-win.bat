@@ -41,11 +41,11 @@ if NOT exist %boost_lib_dir% (
     )
     if NOT exist %boost_installer% (
         echo Downloading boost from %boost_dl%
-        powershell -Command "Invoke-WebRequest %boost_dl% -OutFile %boost_installer%" || goto :error
+        powershell -Command "Invoke-WebRequest %boost_dl% -OutFile %boost_installer%"
     )
 
     echo Installing boost...
-    %boost_installer% /silent || goto :error
+    %boost_installer% /silent
 )
 
 cd %source_dir%
@@ -56,18 +56,18 @@ set build_output_dir=build-%build_config%-x%arch%
 
 if exist "%build_output_dir%" (
     echo Cleaning build directory: %build_output_dir%
-    powershell -Command "Remove-Item -Recurse -Force '%build_output_dir%'" || goto :error
+    powershell -Command "Remove-Item -Recurse -Force '%build_output_dir%'"
 )
 if NOT exist "%build_output_dir%" (
-    mkdir "%build_output_dir%" || goto :error
+    mkdir "%build_output_dir%"
 )
 
-cd "%source_dir%/%build_output_dir%" || goto :error
+cd "%source_dir%/%build_output_dir%"
 
 echo Patching libsolc cmake to build shared lib
 set solc_cmake=%source_dir%/libsolc/CMakeLists.txt
 echo %source_dir%/libsolc/CMakeLists.txt
-powershell -Command "(gc %solc_cmake%) -replace 'libsolc libsolc.cpp', 'libsolc SHARED libsolc.cpp' | Out-File %solc_cmake% -encoding ASCII" || goto :error
+powershell -Command "(gc %solc_cmake%) -replace 'libsolc libsolc.cpp', 'libsolc SHARED libsolc.cpp' | Out-File %solc_cmake% -encoding ASCII"
 
 echo Creating cmake override to force static linking to runtime
 set cxx_flag_overrides="%source_dir%/cmake/cxx_flag_overrides.cmake"
@@ -91,20 +91,10 @@ cmake -G %cmake_gen% .. ^
     -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=TRUE ^
     -DCMAKE_CXX_STANDARD=17 ^
     -DCMAKE_CXX_STANDARD_REQUIRED=ON ^
-    -DCMAKE_USER_MAKE_RULES_OVERRIDE_CXX="%source_dir%/cmake/cxx_flag_overrides.cmake" ^    
-    || goto :error
+    -DCMAKE_USER_MAKE_RULES_OVERRIDE_CXX="%source_dir%/cmake/cxx_flag_overrides.cmake"
 
 echo Building solidity solution
 cd "%source_dir%/%build_output_dir%"
-msbuild solidity.sln /t:libsolc /p:Configuration=%build_config% /m:%NUMBER_OF_PROCESSORS% /v:minimal || goto :error
+msbuild solidity.sln /t:libsolc /p:Configuration=%build_config% /m:%NUMBER_OF_PROCESSORS% /v:minimal
 
 cd %start_dir%
-
-goto :EOF
-
-:error
-cd "%start_dir%"
-echo Failed
-exit /b %errorlevel%
-
-:EOF
