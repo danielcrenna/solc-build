@@ -1,6 +1,6 @@
 [submodule "solidity"]
 	path = solidity
-	url = https://github.com/MeadowSuite/solidity.git
+	url = https://github.com/ethereum/solidity.git
 	branch = release
 [submodule "solidity-v0.4.19"]
 	path = solidity-v0.4.19
