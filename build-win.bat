@@ -94,26 +94,6 @@ cmake -G %cmake_gen% .. ^
     -DCMAKE_USER_MAKE_RULES_OVERRIDE_CXX="%source_dir%/cmake/cxx_flag_overrides.cmake" ^
     || goto :error
 
-echo Preparing jsoncpp source
-msbuild jsoncpp-project.vcxproj /p:Configuration=%build_config% /m:%NUMBER_OF_PROCESSORS% /v:minimal
-
-echo Cmake generation for msvc jsoncpp project with static runtime linking
-cd "%source_dir%/%build_output_dir%/deps/src/jsoncpp-project-build"
-del CMakeCache.txt
-cmake -G %cmake_gen% "../jsoncpp-project" ^
-    -DCMAKE_SUPPRESS_REGENERATION=TRUE ^
-    -DCMAKE_USER_MAKE_RULES_OVERRIDE_CXX="%source_dir%/cmake/cxx_flag_overrides.cmake" ^
-    || goto :error
-
-echo Building jsoncpp static lib
-msbuild "src/lib_json/jsoncpp_lib_static.vcxproj" ^
-    /p:Configuration=%build_config% /m:%NUMBER_OF_PROCESSORS% /v:minimal ^
-    /p:OutDir="%source_dir%/%build_output_dir%/deps/lib/" ^
-    /p:AssemblyName="jsoncpp" ^
-    /p:TargetName="jsoncpp" ^
-    || goto :error
-
-
 echo Building solidity solution
 cd "%source_dir%/%build_output_dir%"
 msbuild solidity.sln /t:libsolc /p:Configuration=%build_config% /m:%NUMBER_OF_PROCESSORS% /v:minimal || goto :error
