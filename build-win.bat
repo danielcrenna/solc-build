@@ -79,8 +79,6 @@ echo set(CXXFLAGS "${CXXFLAGS} /permissive-")                               >> %
 echo set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /permissive-")                 >> %cxx_flag_overrides%
 echo set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /permissive-") >> %cxx_flag_overrides%
 
-add_compile_options(/permissive-)
-
 echo Cmake generation for msvc solidity project
 cmake -G %cmake_gen% .. ^
     -DTESTS=Off ^
@@ -101,7 +99,6 @@ cd "%source_dir%/%build_output_dir%"
 msbuild solidity.sln /t:libsolc /p:Configuration=%build_config% /m:%NUMBER_OF_PROCESSORS% /v:minimal || goto :error
 
 cd %start_dir%
-
 
 goto :EOF
 

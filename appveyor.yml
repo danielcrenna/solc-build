@@ -12,9 +12,9 @@ branches:
 skip_tags: true
 
 before_build:
-  - git submodule update --init --recursive || exit
+  - git submodule update --init --recursive
 
 build_script:
-  - build-win.bat %arch% Release || exit
-  - 7z a win-%arch%.zip %APPVEYOR_BUILD_FOLDER%/solidity/build-Release-x%arch%/libsolc/Release/solc.dll || exit
+  - build-win.bat %arch% Release
+  - 7z a win-%arch%.zip %APPVEYOR_BUILD_FOLDER%/solidity/build-Release-x%arch%/libsolc/Release/solc.dll
   - appveyor PushArtifact win-%arch%.zip
