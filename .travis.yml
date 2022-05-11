@@ -18,10 +18,9 @@ matrix:
           packages:
             - g++-7
       before_install:
-        - sudo apt-get -y install gcc
-        - sudo apt-get -y install cmake
+        - sudo apt-get -y install cmake-3.13.0
         - export CXX=g++-7 CC=gcc-7
-        - git submodule update --init --recursive                
+        - git submodule update --init --recursive        
       script:
         - ./build-linux.sh
         

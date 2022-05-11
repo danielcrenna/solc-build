@@ -10,25 +10,11 @@ branches:
   only:
     - master
 skip_tags: true
+
 before_build:
-  - set RELEASE_TITLE=%DATE:~10,4%-%DATE:~4,2%-%DATE:~7,2%
-  - echo %RELEASE_TITLE%
   - git submodule update --init --recursive || exit
 
 build_script:
   - build-win.bat %arch% Release || exit
   - 7z a win-%arch%.zip %APPVEYOR_BUILD_FOLDER%/solidity/build-Release-x%arch%/libsolc/Release/solc.dll || exit
   - appveyor PushArtifact win-%arch%.zip
-# deploy:
-  # tag: $(RELEASE_TITLE)
-  # release: $(RELEASE_TITLE)
-  # description: Solc lib
-  # provider: GitHub
-  # auth_token:
-    # secure: f6EFNwNS0jfHhqe8mjtCgIVyBlbGlCDNZH/Z2xTTlhLTpp1eFSPrBN9kZO9Uy8qx
-  # artifact: win-%arch%.zip
-  # force_update: true
-  # draft: true
-  # prerelease: false
-  # on:
-    # branch: master

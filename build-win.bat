@@ -73,12 +73,10 @@ echo Creating cmake override to force static linking to runtime
 set cxx_flag_overrides="%source_dir%/cmake/cxx_flag_overrides.cmake"
 echo set(CMAKE_CXX_FLAGS_DEBUG_INIT          "/MT /Zi /Od /Ob0 /D NDEBUG")  >> %cxx_flag_overrides%
 echo set(CMAKE_CXX_FLAGS_MINSIZEREL_INIT     "/MT /O1 /Ob1 /D NDEBUG")      >> %cxx_flag_overrides%
-echo set(CMAKE_CXX_FLAGS_RELEASE_INIT        "/MT /O2 /Ob2 /D NDEBUG")  >> %cxx_flag_overrides%
+echo set(CMAKE_CXX_FLAGS_RELEASE_INIT        "/MT /O2 /Ob2 /D NDEBUG")      >> %cxx_flag_overrides%
 echo set(CMAKE_CXX_FLAGS_RELWITHDEBINFO_INIT "/MT /Z7 /O2 /Ob1 /D NDEBUG")  >> %cxx_flag_overrides%
 
-echo set(CMAKE_CXX_STANDARD                  "11")  >> %cxx_flag_overrides%
-echo set(CMAKE_CXX_STANDARD_REQUIRED         "ON")  >> %cxx_flag_overrides%
-echo add_compile_options(/permissive-)
+add_compile_options(/permissive-)
 
 echo Cmake generation for msvc solidity project
 cmake -G %cmake_gen% .. ^
@@ -90,7 +88,9 @@ cmake -G %cmake_gen% .. ^
     -DCMAKE_SUPPRESS_REGENERATION=TRUE ^
     -DCMAKE_BUILD_TYPE=%build_config% ^
     -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=TRUE ^
-    -DCMAKE_USER_MAKE_RULES_OVERRIDE_CXX="%source_dir%/cmake/cxx_flag_overrides.cmake" ^
+    -DCMAKE_CXX_STANDARD=17 ^
+    -DCMAKE_CXX_STANDARD_REQUIRED=ON ^
+    -DCMAKE_USER_MAKE_RULES_OVERRIDE_CXX="%source_dir%/cmake/cxx_flag_overrides.cmake" ^    
     || goto :error
 
 echo Building solidity solution
