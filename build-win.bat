@@ -75,6 +75,9 @@ echo set(CMAKE_CXX_FLAGS_DEBUG_INIT          "/MT /Zi /Od /Ob0 /D NDEBUG")  >> %
 echo set(CMAKE_CXX_FLAGS_MINSIZEREL_INIT     "/MT /O1 /Ob1 /D NDEBUG")      >> %cxx_flag_overrides%
 echo set(CMAKE_CXX_FLAGS_RELEASE_INIT        "/MT /O2 /Ob2 /D NDEBUG")      >> %cxx_flag_overrides%
 echo set(CMAKE_CXX_FLAGS_RELWITHDEBINFO_INIT "/MT /Z7 /O2 /Ob1 /D NDEBUG")  >> %cxx_flag_overrides%
+echo set(CXXFLAGS "${CXXFLAGS} /permissive-")                               >> %cxx_flag_overrides%
+echo set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /permissive-")                 >> %cxx_flag_overrides%
+echo set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /permissive-") >> %cxx_flag_overrides%
 
 add_compile_options(/permissive-)
 
