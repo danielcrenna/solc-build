@@ -4,9 +4,6 @@ branches:
     only:
         - master
 
-install:    
-  - module load gcc cmake
-
 matrix:
   include:
     - os: linux
@@ -21,8 +18,10 @@ matrix:
           packages:
             - g++-7
       before_install:
+        - sudo apt-get -y install gcc
+        - sudo apt-get -y install cmake
         - export CXX=g++-7 CC=gcc-7
-        - git submodule update --init --recursive
+        - git submodule update --init --recursive                
       script:
         - ./build-linux.sh
         
