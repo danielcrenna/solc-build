@@ -2,12 +2,10 @@ version: 1.0.{build}
 image: Visual Studio 2017
 environment:
   matrix:
-  # - arch: x86
   - arch: x64
 clone_folder: c:\solc-build
 cache:
-# - C:\solc-build\boost_1_67_0-msvc-14.1-32.exe
-- C:\solc-build\boost_1_67_0-msvc-14.1-64.exe
+- C:\solc-build\boost_1_77_0-msvc-14.1-64.exe
 branches:
   only:
     - master
