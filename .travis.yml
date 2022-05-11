@@ -22,15 +22,15 @@ matrix:
         - git submodule update --init --recursive
       script:
         - ./build-linux.sh
-      deploy:
-        provider: releases
-        api_key:
-          secure: "p6Ez9E37XtyTVBBSpu/Ya2V/0u7BvH/Pe74+V35AFF+Pobg+J1InKLuzLz/csAhBfZowS3Glcw+axTDKReiFRVVHeNRJ5eOsVEFrIj8YTeJpjaVri6U3uTHtLuf8sr0S7Eda+SaOhfrlDu+SqnDMWojidb64AdmAfGFCA9r+qxpROfal5oe16Y+VH1AaA5/hiqfRy9JNN+LDdh+KgOThtiGauTMqZ7vcCLZLXjTYZGc536mYc9u/LgP6B84vuAG9eJZ8ssqXq7oPeSl1FifabOqTICWxQZPxUzq39YogDSjjcqxeIXv7wnn8RU2EjKj+eOaplP2n5AUvch61ui9UfEN5s4++ZIuN/MVI5+/F6reOsYMv2SuT3l7ktKX61xeSGJePWhH3RnNxN3w7HCc2eAufF45YvWmMQvRUudiSdrFosDlzsbTj4I9/AD+Ceb/9kZHDMvRZL7mCEWqpoNQ86snp8sm4TUsG8/Oey+GElSmMpzEaa2NLYSqritf70kaC/D+EpH/kGgDKAUhLpibbj9XiZlEd4kwBZamGkojJ+kyOMBE0WOcewl/SeBn8cMKJFhoj8LBD8yNIkuKCV3gTy/q4F/vICk1FyYHGEskwxkOpqMrpTpUswDCatTpN+YSkq+G76pYv8HPBSXurmZk4VIUoXV/2T67jbyCn/NMij2I="
-        file: solidity/build/libsolc/libsolc.so
-        on:
-          repo: MeadowSuite/solc-build
-        skip_cleanup: true
-        draft: true
+      # deploy:
+        # provider: releases
+        # api_key:
+          # secure: "p6Ez9E37XtyTVBBSpu/Ya2V/0u7BvH/Pe74+V35AFF+Pobg+J1InKLuzLz/csAhBfZowS3Glcw+axTDKReiFRVVHeNRJ5eOsVEFrIj8YTeJpjaVri6U3uTHtLuf8sr0S7Eda+SaOhfrlDu+SqnDMWojidb64AdmAfGFCA9r+qxpROfal5oe16Y+VH1AaA5/hiqfRy9JNN+LDdh+KgOThtiGauTMqZ7vcCLZLXjTYZGc536mYc9u/LgP6B84vuAG9eJZ8ssqXq7oPeSl1FifabOqTICWxQZPxUzq39YogDSjjcqxeIXv7wnn8RU2EjKj+eOaplP2n5AUvch61ui9UfEN5s4++ZIuN/MVI5+/F6reOsYMv2SuT3l7ktKX61xeSGJePWhH3RnNxN3w7HCc2eAufF45YvWmMQvRUudiSdrFosDlzsbTj4I9/AD+Ceb/9kZHDMvRZL7mCEWqpoNQ86snp8sm4TUsG8/Oey+GElSmMpzEaa2NLYSqritf70kaC/D+EpH/kGgDKAUhLpibbj9XiZlEd4kwBZamGkojJ+kyOMBE0WOcewl/SeBn8cMKJFhoj8LBD8yNIkuKCV3gTy/q4F/vICk1FyYHGEskwxkOpqMrpTpUswDCatTpN+YSkq+G76pYv8HPBSXurmZk4VIUoXV/2T67jbyCn/NMij2I="
+        # file: solidity/build/libsolc/libsolc.so
+        # on:
+          # repo: MeadowSuite/solc-build
+        # skip_cleanup: true
+        # draft: true
 
     - os: osx
       env:
@@ -40,12 +40,12 @@ matrix:
         - git submodule update --init --recursive
       script:
         - ./build-macos.sh
-      deploy:
-        provider: releases
-        api_key:
-          secure: "p6Ez9E37XtyTVBBSpu/Ya2V/0u7BvH/Pe74+V35AFF+Pobg+J1InKLuzLz/csAhBfZowS3Glcw+axTDKReiFRVVHeNRJ5eOsVEFrIj8YTeJpjaVri6U3uTHtLuf8sr0S7Eda+SaOhfrlDu+SqnDMWojidb64AdmAfGFCA9r+qxpROfal5oe16Y+VH1AaA5/hiqfRy9JNN+LDdh+KgOThtiGauTMqZ7vcCLZLXjTYZGc536mYc9u/LgP6B84vuAG9eJZ8ssqXq7oPeSl1FifabOqTICWxQZPxUzq39YogDSjjcqxeIXv7wnn8RU2EjKj+eOaplP2n5AUvch61ui9UfEN5s4++ZIuN/MVI5+/F6reOsYMv2SuT3l7ktKX61xeSGJePWhH3RnNxN3w7HCc2eAufF45YvWmMQvRUudiSdrFosDlzsbTj4I9/AD+Ceb/9kZHDMvRZL7mCEWqpoNQ86snp8sm4TUsG8/Oey+GElSmMpzEaa2NLYSqritf70kaC/D+EpH/kGgDKAUhLpibbj9XiZlEd4kwBZamGkojJ+kyOMBE0WOcewl/SeBn8cMKJFhoj8LBD8yNIkuKCV3gTy/q4F/vICk1FyYHGEskwxkOpqMrpTpUswDCatTpN+YSkq+G76pYv8HPBSXurmZk4VIUoXV/2T67jbyCn/NMij2I="
-        file: solidity/build/libsolc/libsolc.dylib
-        on:
-          repo: MeadowSuite/solc-build
-        skip_cleanup: true
-        draft: true
+      # deploy:
+        # provider: releases
+        # api_key:
+          # secure: "p6Ez9E37XtyTVBBSpu/Ya2V/0u7BvH/Pe74+V35AFF+Pobg+J1InKLuzLz/csAhBfZowS3Glcw+axTDKReiFRVVHeNRJ5eOsVEFrIj8YTeJpjaVri6U3uTHtLuf8sr0S7Eda+SaOhfrlDu+SqnDMWojidb64AdmAfGFCA9r+qxpROfal5oe16Y+VH1AaA5/hiqfRy9JNN+LDdh+KgOThtiGauTMqZ7vcCLZLXjTYZGc536mYc9u/LgP6B84vuAG9eJZ8ssqXq7oPeSl1FifabOqTICWxQZPxUzq39YogDSjjcqxeIXv7wnn8RU2EjKj+eOaplP2n5AUvch61ui9UfEN5s4++ZIuN/MVI5+/F6reOsYMv2SuT3l7ktKX61xeSGJePWhH3RnNxN3w7HCc2eAufF45YvWmMQvRUudiSdrFosDlzsbTj4I9/AD+Ceb/9kZHDMvRZL7mCEWqpoNQ86snp8sm4TUsG8/Oey+GElSmMpzEaa2NLYSqritf70kaC/D+EpH/kGgDKAUhLpibbj9XiZlEd4kwBZamGkojJ+kyOMBE0WOcewl/SeBn8cMKJFhoj8LBD8yNIkuKCV3gTy/q4F/vICk1FyYHGEskwxkOpqMrpTpUswDCatTpN+YSkq+G76pYv8HPBSXurmZk4VIUoXV/2T67jbyCn/NMij2I="
+        # file: solidity/build/libsolc/libsolc.dylib
+        # on:
+          # repo: MeadowSuite/solc-build
+        # skip_cleanup: true
+        # draft: true
