@@ -91,7 +91,7 @@ cmake -G %cmake_gen% .. ^
 
 echo Building solidity solution
 cd "%source_dir%/%build_output_dir%"
-msbuild solidity.sln /t:libsolc /p:Configuration=%build_config% /m:%NUMBER_OF_PROCESSORS% /v:minimal || goto :error
+msbuild solidity.sln /t:libsolc /p:Configuration=%build_config% /m:%NUMBER_OF_PROCESSORS% /v:minimal /std:c++17 /permissive- || goto :error
 
 cd %start_dir%
 
