@@ -29,6 +29,7 @@ matrix:
       before_install:
         - export CXX=g++-7 CC=gcc-7
         - git submodule update --init --recursive
+        - module load gcc cmake
       script:
         - ./build-linux.sh
 
