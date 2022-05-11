@@ -20,10 +20,10 @@ if "%2" == "" (
 
 set build_config=%2
 
-set boost_dir=C:/local/boost_1_67_0
+set boost_dir=C:/local/boost_1_77_0
 set boost_lib_dir=%boost_dir%/lib%arch%-msvc-14.1
-set boost_installer="boost_1_67_0-msvc-14.1-%arch%.exe"
-set boost_dl="https://iweb.dl.sourceforge.net/project/boost/boost-binaries/1.67.0/boost_1_67_0-msvc-14.1-%arch%.exe"
+set boost_installer="boost_1_77_0-msvc-14.1-%arch%.exe"
+set boost_dl="https://iweb.dl.sourceforge.net/project/boost/boost-binaries/1.77.0/boost_1_77_0-msvc-14.1-%arch%.exe"
 
 cd /D "%~dp0"
 set start_dir=%cd%
