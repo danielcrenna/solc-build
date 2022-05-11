@@ -76,6 +76,10 @@ echo set(CMAKE_CXX_FLAGS_MINSIZEREL_INIT     "/MT /O1 /Ob1 /D NDEBUG")      >> %
 echo set(CMAKE_CXX_FLAGS_RELEASE_INIT        "/MT /O2 /Ob2 /D NDEBUG")  >> %cxx_flag_overrides%
 echo set(CMAKE_CXX_FLAGS_RELWITHDEBINFO_INIT "/MT /Z7 /O2 /Ob1 /D NDEBUG")  >> %cxx_flag_overrides%
 
+echo set(CMAKE_CXX_STANDARD                  "11")  >> %cxx_flag_overrides%
+echo set(CMAKE_CXX_STANDARD_REQUIRED         "ON")  >> %cxx_flag_overrides%
+echo add_compile_options(/permissive-)
+
 echo Cmake generation for msvc solidity project
 cmake -G %cmake_gen% .. ^
     -DTESTS=Off ^
@@ -91,7 +95,7 @@ cmake -G %cmake_gen% .. ^
 
 echo Building solidity solution
 cd "%source_dir%/%build_output_dir%"
-msbuild solidity.sln /t:libsolc /p:Configuration=%build_config% /m:%NUMBER_OF_PROCESSORS% /v:minimal /std:c++17 /permissive- || goto :error
+msbuild solidity.sln /t:libsolc /p:Configuration=%build_config% /m:%NUMBER_OF_PROCESSORS% /v:minimal || goto :error
 
 cd %start_dir%
 
