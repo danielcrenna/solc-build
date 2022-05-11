@@ -2,9 +2,9 @@
 
 if [ ! "$(ls -A boost_1_67_0)" ]
 then
-    wget https://downloads.sourceforge.net/project/boost/boost/1.67.0/boost_1_67_0.tar.bz2 -O boost_1_67_0.tar.bz2
-    tar --bzip2 -xf boost_1_67_0.tar.bz2
-    cd boost_1_67_0
+    wget https://downloads.sourceforge.net/project/boost/boost/1.77.0/boost_1_77_0.tar.bz2 -O boost_1_77_0.tar.bz2
+    tar --bzip2 -xf boost_1_77_0.tar.bz2
+    cd boost_1_77_0
     ./bootstrap.sh --with-libraries=regex,filesystem,program_options,system,test
     ./b2 -j4 link=static cxxflags=-fPIC cflags=-fPIC
     cd ..
@@ -33,6 +33,6 @@ cmake .. \
     -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
     -DBoost_USE_STATIC_LIBS=On \
     -DBoost_NO_SYSTEM_PATHS=TRUE \
-    -DBOOST_ROOT=../boost_1_67_0
+    -DBOOST_ROOT=../boost_1_77_0
 
 make libsolc -j4
