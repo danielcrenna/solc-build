@@ -6,7 +6,7 @@ if NOT "%1" == "x64" (
 )
 if "%1" == "x64" (
     set arch=64
-    set cmake_gen="Visual Studio 16 2019 Win64"
+    set cmake_gen="Visual Studio 16 2019"
 )
 if "%2" == "" (
     echo Must specify second argument as build config
